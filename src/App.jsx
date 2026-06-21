@@ -59,19 +59,21 @@ const MenuSection = ({ section, index }) => {
   )
 }
 
-const GalleryItem = ({ gradient, label, index }) => {
+const GalleryItem = ({ item, index }) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`aspect-square bg-gradient-to-br ${gradient} flex items-end p-4 cursor-pointer group overflow-hidden relative`}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      className="relative overflow-hidden group rounded-lg aspect-square"
     >
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500" />
-      <span className="text-[#e8d5b7] text-xs tracking-widest uppercase font-sans opacity-0 group-hover:opacity-100 transition-opacity relative z-10">{label}</span>
+      <img src={item.src} alt={item.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-4">
+        <span className="text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 transition-transform">{item.label}</span>
+      </div>
     </motion.div>
   )
 }
@@ -89,13 +91,13 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const galleryItems = [
-    { gradient: 'from-amber-900 to-orange-950', label: 'Robata de Polvo' },
-    { gradient: 'from-red-950 to-rose-900', label: 'Picanha Wagyu' },
-    { gradient: 'from-green-950 to-emerald-900', label: 'Jardim de Ervas' },
-    { gradient: 'from-yellow-950 to-amber-900', label: 'Petit Gâteau' },
-    { gradient: 'from-orange-950 to-red-900', label: 'Tartar de Atum' },
-    { gradient: 'from-stone-900 to-zinc-950', label: 'Ambiente' },
+  const foodImages = [
+    { src: 'https://images.unsplash.com/photo-1661883237884-263e8de8869b?w=600&q=80&auto=format&fit=crop', label: 'Entrada' },
+    { src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop', label: 'Prato Principal' },
+    { src: 'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=600&q=80&auto=format&fit=crop', label: 'Sobremesa' },
+    { src: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80&auto=format&fit=crop', label: 'Chef Especial' },
+    { src: 'https://images.unsplash.com/photo-1679503585289-c02467981894?w=600&q=80&auto=format&fit=crop', label: 'Degustação' },
+    { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop', label: 'Menu Executivo' },
   ]
 
   return (
@@ -155,6 +157,13 @@ export default function App() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
+        <video
+          autoPlay loop muted playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+        >
+          <source src="https://videos.pexels.com/video-files/31631562/31631562-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0700]/80 via-[#0d0700]/60 to-[#0d0700]" />
         <div
           className="absolute inset-0"
           style={{ background: 'radial-gradient(ellipse at 50% 30%, #2a1505 0%, #0d0700 70%)' }}
@@ -362,20 +371,12 @@ export default function App() {
       <section id="chef" className="py-32 bg-[#1a0e05]">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <div className="aspect-[3/4] bg-[#0d0700] border border-[#2a1a08] flex items-center justify-center relative overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{ background: 'radial-gradient(circle at 50% 30%, rgba(200,144,42,0.08) 0%, transparent 60%)' }}
+            <div className="relative overflow-hidden rounded-xl">
+              <img
+                src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&q=80&auto=format&fit=crop"
+                alt="chef"
+                className="w-full h-[500px] object-cover object-top rounded-xl"
               />
-              <div className="text-center relative z-10 p-12">
-                <GiChefToque className="text-[#c8902a] opacity-20 mx-auto mb-4" size={100} />
-                <GiChefToque className="text-[#c8902a] opacity-60 mx-auto" size={60} />
-                <div className="mt-6 font-serif text-2xl text-[#e8d5b7]">Chef Rodrigo Alma</div>
-                <div className="text-[#c8902a] text-xs tracking-widest uppercase mt-2 font-sans">Chef Executivo</div>
-                <div className="flex items-center justify-center gap-1 mt-3">
-                  {[1,2,3,4,5].map(s => <FaStar key={s} className="text-[#c8902a]" size={10} />)}
-                </div>
-              </div>
               <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#0d0700] to-transparent" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-20 h-20 border border-[#c8902a]/20" />
@@ -458,8 +459,8 @@ export default function App() {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {galleryItems.map((item, i) => (
-            <GalleryItem key={i} gradient={item.gradient} label={item.label} index={i} />
+          {foodImages.map((item, i) => (
+            <GalleryItem key={i} item={item} index={i} />
           ))}
         </div>
         <div className="text-center mt-8">
@@ -484,6 +485,11 @@ export default function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div className="space-y-4 text-sm">
+              <img
+                src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80&auto=format&fit=crop"
+                alt="ambiance"
+                className="w-full h-48 object-cover rounded-lg"
+              />
               {[
                 { icon: FaPhone, text: '(11) 3456-7890' },
                 { icon: FaWhatsapp, text: '(11) 98765-4321' },
