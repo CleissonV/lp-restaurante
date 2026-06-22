@@ -3,6 +3,7 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'fra
 import { FaBars, FaTimes, FaChevronDown, FaStar, FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebook, FaWhatsapp, FaUtensils, FaWineGlassAlt, FaLeaf } from 'react-icons/fa'
 import { GiChefToque, GiSpoon, GiFlowerEmblem } from 'react-icons/gi'
 import { MdRestaurantMenu } from 'react-icons/md'
+import { LuSalad, LuBeef, LuCakeSlice } from 'react-icons/lu'
 
 const CandleFlame = () => (
   <svg width="20" height="40" viewBox="0 0 20 40" className="candle-flame">
@@ -14,17 +15,17 @@ const CandleFlame = () => (
 )
 
 const menu = [
-  { category: 'Entradas', emoji: '🥗', items: [
+  { category: 'Entradas', icon: LuSalad, items: [
     { name: 'Tartar de Atum Premium', desc: 'Atum selvagem, abacate, gergelim negro, aioli trufado', price: 'R$ 68' },
     { name: 'Carpaccio de Wagyu', desc: 'Wagyu A5 fatiado fino, rúcula, lascas de parmesão 36 meses, azeite extravirgem', price: 'R$ 89' },
     { name: 'Ceviche Amazônico', desc: 'Peixe do dia, leite de tigre com tucupi, coentro, batata-doce', price: 'R$ 72' },
   ]},
-  { category: 'Principais', emoji: '🍖', items: [
+  { category: 'Principais', icon: LuBeef, items: [
     { name: 'Robata de Polvo', desc: 'Polvo grelhado em brasa de lenha, purê de batata baroa, crocante de alho', price: 'R$ 118' },
     { name: 'Picanha Angus Prime', desc: 'Picanha maturada 45 dias, chimichurri da casa, farofa de manteiga de garrafa', price: 'R$ 148' },
     { name: 'Risoto de Funghi Porcini', desc: 'Arroz arbóreo, porcini importado, trufa negra raspada à mesa, parmesão', price: 'R$ 96' },
   ]},
-  { category: 'Sobremesas', emoji: '🍮', items: [
+  { category: 'Sobremesas', icon: LuCakeSlice, items: [
     { name: 'Crème Brûlée de Maracujá', desc: 'Creme de maracujá fresco, caramelização artesanal, sorvete de baunilha', price: 'R$ 38' },
     { name: 'Petit Gâteau de Cacau 70%', desc: 'Chocolate Valrhona, interior cremoso, sorvete de creme artesanal', price: 'R$ 42' },
     { name: 'Pavê de Guaraná', desc: 'Releitura amazônica, biscoito de guaraná, creme de cupuaçu', price: 'R$ 36' },
@@ -51,7 +52,7 @@ const MenuSection = ({ section, index }) => {
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: index * 0.15 }} className="menu-card bg-[#1a0e05] p-8">
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-2xl">{section.emoji}</span>
+        <span className="text-[#c8902a]"><section.icon size={26} strokeWidth={1.5} /></span>
         <h3 className="font-serif text-2xl text-[#c8902a]">{section.category}</h3>
       </div>
       {section.items.map((item, i) => <MenuItemCard key={i} item={item} />)}
@@ -159,9 +160,10 @@ export default function App() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <video
           autoPlay loop muted playsInline
+          poster="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&auto=format&fit=crop"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         >
-          <source src="https://videos.pexels.com/video-files/31631562/31631562-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/4043/4043-1080.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0700]/80 via-[#0d0700]/60 to-[#0d0700]" />
         <div
@@ -347,7 +349,7 @@ export default function App() {
             className="max-w-2xl mx-auto menu-card bg-[#1a0e05] p-8 md:p-12"
           >
             <div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">{menu[activeMenu].emoji}</span>
+              {(() => { const Icon = menu[activeMenu].icon; return <span className="text-[#c8902a]"><Icon size={30} strokeWidth={1.5} /></span> })()}
               <h3 className="font-serif text-3xl text-[#c8902a] italic">{menu[activeMenu].category}</h3>
             </div>
             {menu[activeMenu].items.map((item, i) => (
