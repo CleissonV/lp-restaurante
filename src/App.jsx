@@ -112,8 +112,11 @@ export default function App() {
       {/* Nav */}
       <nav className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-[#0d0700]/95 backdrop-blur-md border-b border-[#2a1a08] py-4' : 'py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="font-serif text-xl text-[#e8d5b7] italic">
-            Alma <span className="text-[#c8902a]">Gastronomia</span>
+          <a href="#" className="flex items-center gap-2.5 font-serif text-xl text-[#e8d5b7] italic">
+            <svg viewBox="0 0 32 32" className="w-5 h-6" fill="none" stroke="#c8902a" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 5v8a3 3 0 0 0 6 0V5" /><path d="M14 5v22" /><path d="M23 5c-2 0-3.5 3-3.5 7s1.5 5 3.5 5v10" />
+            </svg>
+            <span>Alma <span className="text-[#c8902a]">Gastronomia</span></span>
           </a>
           <div className="hidden md:flex items-center gap-8">
             <NavLink href="#cardapio">Cardápio</NavLink>
