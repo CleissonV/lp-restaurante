@@ -93,11 +93,11 @@ export default function App() {
   }, [])
 
   const foodImages = [
-    { src: 'https://images.unsplash.com/photo-1661883237884-263e8de8869b?w=600&q=80&auto=format&fit=crop', label: 'Entrada' },
+    { src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80&auto=format&fit=crop', label: 'Entrada' },
     { src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop', label: 'Prato Principal' },
     { src: 'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=600&q=80&auto=format&fit=crop', label: 'Sobremesa' },
     { src: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80&auto=format&fit=crop', label: 'Chef Especial' },
-    { src: 'https://images.unsplash.com/photo-1679503585289-c02467981894?w=600&q=80&auto=format&fit=crop', label: 'Degustação' },
+    { src: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=600&q=80&auto=format&fit=crop', label: 'Degustação' },
     { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop', label: 'Menu Executivo' },
   ]
 
