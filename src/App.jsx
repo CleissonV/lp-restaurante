@@ -168,10 +168,10 @@ export default function App() {
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0700]/80 via-[#0d0700]/60 to-[#0d0700]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0700]/70 via-[#0d0700]/45 to-[#0d0700]/85" />
         <div
           className="absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse at 50% 30%, #2a1505 0%, #0d0700 70%)' }}
+          style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(42,21,5,0.35) 0%, rgba(13,7,0,0.8) 72%)' }}
         />
         <div
           className="absolute inset-0"
